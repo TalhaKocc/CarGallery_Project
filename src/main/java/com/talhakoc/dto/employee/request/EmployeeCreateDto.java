@@ -2,6 +2,8 @@ package com.talhakoc.dto.employee.request;
 
 import java.math.BigDecimal;
 
+import com.talhakoc.model.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,8 @@ public class EmployeeCreateDto {
 	private String email;
 	
 	private String password;
+	
+	private Role role;
 	
 	private String phoneNumber;
 	

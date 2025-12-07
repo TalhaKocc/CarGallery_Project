@@ -15,6 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmployeeDto {
 
+	private Long id;
+	
 	private UserDto user;
 	
 	private BigDecimal salary;
