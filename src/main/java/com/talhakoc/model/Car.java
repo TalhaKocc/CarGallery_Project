@@ -29,7 +29,7 @@ public class Car {
 	private Long id;
 	
 	private Integer year;
-	
+	      
 	private Long mileage;
 	
 	private BigDecimal price;
@@ -43,7 +43,7 @@ public class Car {
 	
 	@ManyToOne
 	private CarModel carModel;
-	
+	    
 	@ManyToOne
 	private CarEngine carEngine;
 	

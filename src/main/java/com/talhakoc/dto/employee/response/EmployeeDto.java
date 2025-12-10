@@ -23,5 +23,33 @@ public class EmployeeDto {
 	
 	private String phoneNumber;
 	
-	
 }
+
+
+/*
+
+@Mapper(componentModel = "spring")
+public interface EmployeeMapper {
+
+    EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
+
+    // CREATE → EmployeeCreateDto → Employee
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "user", ignore = true) // service içinde set edilecek
+    Employee toEntity(EmployeeCreateDto dto);
+
+    // UPDATE → EmployeeUpdateDto → Employee
+    @Mapping(target = "user", ignore = true) // user güncellemesini service yapar
+    Employee toEntity(EmployeeUpdateDto dto);
+
+    // RESPONSE → Employee → EmployeeDto
+    @Mapping(target = "fullName", source = "user.fullName")
+    @Mapping(target = "email", source = "user.email")
+    EmployeeDto toDto(Employee employee);
+
+    // Listeleme için (opsiyonel)
+    List<EmployeeDto> toDtoList(List<Employee> employees);
+}
+
+
+*/
