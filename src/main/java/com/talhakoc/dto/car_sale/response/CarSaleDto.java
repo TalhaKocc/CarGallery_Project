@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.talhakoc.dto.car.response.CarDto;
-import com.talhakoc.dto.employee.response.EmployeeDto;
+import com.talhakoc.dto.employee.response.EmployeeDetailsDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +25,6 @@ public class CarSaleDto {
 	
 	private CarDto car;
 	
-	private EmployeeDto employee;
+	private EmployeeDetailsDto employee;
 	
 }

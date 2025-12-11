@@ -13,5 +13,5 @@ public class CarEngineDto {
 
 	private Long id;
 	
-	private String name;
+	private String engineSize;
 }

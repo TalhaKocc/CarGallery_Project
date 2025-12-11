@@ -36,7 +36,7 @@ public class Car {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "car_status")
-	private CarStatus carStatus;
+	private CarStatus status;
 	
 	@ManyToOne
 	private CarMake carMake;

@@ -1,7 +1,5 @@
 package com.talhakoc.dto.employee.response;
 
-import java.math.BigDecimal;
-
 import com.talhakoc.dto.user.response.UserDto;
 
 import lombok.AllArgsConstructor;
@@ -11,17 +9,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDto {
+@NoArgsConstructor
+public class EmployeeDetailsDto {
 
-	private Long id;
-	
 	private UserDto user;
 	
-	private BigDecimal salary;
-	
 	private String phoneNumber;
-	
 }
-

@@ -23,7 +23,7 @@ public class CarCreateDto {
 	
 	private Long carFuelId;
 	
-	private CarStatus carStatus;
+	private CarStatus status;
 	
 	private Integer year;
 	
