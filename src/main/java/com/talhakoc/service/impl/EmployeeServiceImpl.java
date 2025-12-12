@@ -44,8 +44,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public List<EmployeeDto> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<Employee> employees = employeeRepository.findAll();
+		return employeeMapper.toDtoList(employees);
 	}
 
 	@Override
@@ -61,6 +62,14 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		employeeRepository.save(employee);
 		
 		return userMapper.toDto(employee.getUser());
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
+		
+		Employee employee = employeeRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Çalışan bulunamadı"));
+		employeeRepository.delete(employee);
 	}
 
 

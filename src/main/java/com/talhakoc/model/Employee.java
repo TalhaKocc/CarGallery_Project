@@ -2,6 +2,7 @@ package com.talhakoc.model;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,14 +27,12 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
 	private BigDecimal salary;
 	
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private User user;
 
 }
