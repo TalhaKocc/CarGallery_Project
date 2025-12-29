@@ -11,10 +11,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"com.talhakoc"})
 @EnableJpaRepositories(basePackages = "com.talhakoc.repository")
 @SpringBootApplication
-public class CargalleryprojectApplication {
+public class CarGalleryProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CargalleryprojectApplication.class, args);
+		SpringApplication.run(CarGalleryProjectApplication.class, args);
 	}
 
 }
