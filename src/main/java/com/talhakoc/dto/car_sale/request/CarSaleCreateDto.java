@@ -21,9 +21,6 @@ public class CarSaleCreateDto {
 	private Long carId;
 	
 	@NotNull
-	private Long employeeId;
-	
-	@NotNull
 	@Positive(message = "Lütfen pozitif bir sayı giriniz")
 	private BigDecimal salePrice;
 	
