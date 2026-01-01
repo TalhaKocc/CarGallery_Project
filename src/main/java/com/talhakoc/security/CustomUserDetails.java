@@ -19,7 +19,7 @@ public class CustomUserDetails implements UserDetails{
 		this.user = user;
 		
 		Role role = user.getRole();
-		this.authorities = List.of(new SimpleGrantedAuthority(role.getName().toUpperCase()));
+		this.authorities = List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
 	}
 
 	@Override
@@ -29,34 +29,32 @@ public class CustomUserDetails implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return user.getEmail();
+        return user.getEmail();
 	}
 
 	@Override
 	public String getPassword() {
-		return user.getPassword();
+        return user.getPassword();
 	}
 	
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return UserDetails.super.isAccountNonExpired();
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return UserDetails.super.isAccountNonLocked();
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return UserDetails.super.isCredentialsNonExpired();
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+
+        return user.isEnabled();
 	}
 }

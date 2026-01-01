@@ -22,17 +22,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		logger.debug("loadUserByUsername çağrıldı: {}", username);
-		User user = userRepository.findByEmail(username);
-		if (user == null ) {
-			logger.error("Kullanıcı Bulunamadı" + username);
-			throw new UsernameNotFoundException("kullanıcı bulunamadı");
-		}
+		logger.debug("Kullanıcı username çağrıldı: {}", username);
+
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Kullanıcı Bulunamadı "));
+
 		logger.info("Kullanıcı başarıyla bulundu");
-		return new CustomUserDetails(user);
+
+        return new CustomUserDetails(user);
 	}
 
 	
 }
-
-	
