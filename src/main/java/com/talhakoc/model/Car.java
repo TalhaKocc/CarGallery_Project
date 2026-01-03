@@ -28,7 +28,7 @@ public class Car {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "car_status")
-	private CarStatus status;
+	private CarStatus carStatus;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CarMake carMake;

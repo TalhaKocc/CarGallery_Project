@@ -16,7 +16,9 @@ public interface EmployeeMapper {
 
 	@Mapping(target = "user", ignore = true)
 	@Mapping(target = "id", ignore = true)
-	Employee toEmployee(EmployeeCreateDto employeeCreateDto);
+	Employee toEntity(EmployeeCreateDto employeeCreateDto);
+
+    EmployeeDto toDto(Employee employee);
 
 	@Mapping(target = "salary", ignore = true)
 	@Mapping(target = "user", ignore = true)

@@ -25,15 +25,17 @@ public interface CarMapper {
 	@Mapping(target = "carModel", ignore = true)
 	@Mapping(target = "carEngine", ignore = true)
 	@Mapping(target = "carFuel", ignore = true)
+    @Mapping(source = "status", target = "carStatus")
 	Car toEntity(CarCreateDto carCreateDto);
-	
+
+    @Mapping(source = "carStatus", target ="status" )
 	CarDto toDto(Car car);
 
 	@Mapping(target = "carMake", ignore = true)
 	@Mapping(target = "carModel", ignore = true)
 	@Mapping(target = "carEngine", ignore = true)
 	@Mapping(target = "carFuel", ignore = true)
-	@Mapping(target = "status", ignore = true)
+	@Mapping(target = "carStatus", ignore = true)
 	void updateCarFromDto(CarUpdateDto carUpdateDto, @MappingTarget Car car);
 
 	List<CarDto> toDtoList(List<Car> cars);

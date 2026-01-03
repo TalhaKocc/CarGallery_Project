@@ -13,10 +13,12 @@ import com.talhakoc.model.User;
 public interface UserMapper {
 
 	UserDto toDto(User user);
-	
+
 	@Mapping(target = "id", ignore = true)
-	User toEntitiy(EmployeeCreateDto employeeCreateDto);
-	
+	@Mapping(target = "enabled", ignore = true)
+    User toEntity(EmployeeCreateDto employeeCreateDto);
+
 	@Mapping(target = "role", ignore = true)
-	void updateUserFromDto(EmployeeUpdateDto employeeUpdateDto, @MappingTarget User user);
+	@Mapping(target = "enabled", ignore = true)
+    void updateUserFromDto(EmployeeUpdateDto employeeUpdateDto, @MappingTarget User user);
 }

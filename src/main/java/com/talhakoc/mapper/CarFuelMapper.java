@@ -8,6 +8,6 @@ import com.talhakoc.model.CarFuel;
 @Mapper(componentModel = "spring")
 public interface CarFuelMapper {
 
-	CarFuel carFuel(CarFuelDto carFuelDto);
-	
+	CarFuel toEntity(CarFuelDto carFuelDto);
 }
+
