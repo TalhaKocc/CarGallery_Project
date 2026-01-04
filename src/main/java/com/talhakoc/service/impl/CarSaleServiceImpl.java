@@ -17,12 +17,12 @@ import com.talhakoc.repository.EmployeeRepository;
 import com.talhakoc.service.ICarSaleService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class CarSaleServiceImpl  implements ICarSaleService{
 
-	private final CarSale carSale;
 	private final CarSaleMapper carSaleMapper;
 	private final CarSaleRepository carSaleRepository;
 	private final EmployeeRepository employeeRepository;
@@ -37,18 +37,21 @@ public class CarSaleServiceImpl  implements ICarSaleService{
 	}
 
 	@Override
+    @Transactional
 	public CarSaleDto saveCarSale(CarSaleCreateDto carSaleCreateDto) {
 		
 		Car car = carRepository.findById(carSaleCreateDto.getCarId())
 				.orElseThrow(() -> new RuntimeException("Araç bulunamadı"));
 		
-		if(car.getStatus() == CarStatus.SOLD) {
+		if(car.getCarStatus() == CarStatus.SOLD) {
 			throw new RuntimeException("Bu araç zaten satılmış");
 		}
 		
 		Employee employe = employeeRepository.findById(carSaleCreateDto.getEmployeeId())
 				.orElseThrow(() -> new RuntimeException("Çalışan bulunamadı"));
-		
+
+        CarSale carSale = new CarSale();
+
 		carSale.setCar(car);
 		carSale.setEmployee(employe);
 		

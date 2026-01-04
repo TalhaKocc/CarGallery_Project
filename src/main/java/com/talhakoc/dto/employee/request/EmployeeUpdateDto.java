@@ -22,8 +22,7 @@ public class EmployeeUpdateDto {
 	@Email(message = "Lütfen email formatında yazınız")
 	@NotBlank(message = "Bu alan boş bırakılamaz")
 	private String email;
-	
-	@NotBlank(message = "Bu alan boş bırakılamaz")
+
 	private String password;
 	
 	@NotBlank(message = "Bu alan boş bırakılamaz")

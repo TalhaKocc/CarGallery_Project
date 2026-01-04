@@ -20,5 +20,6 @@ public interface UserMapper {
 
 	@Mapping(target = "role", ignore = true)
 	@Mapping(target = "enabled", ignore = true)
+    @Mapping(target = "password" , ignore = true)
     void updateUserFromDto(EmployeeUpdateDto employeeUpdateDto, @MappingTarget User user);
 }
