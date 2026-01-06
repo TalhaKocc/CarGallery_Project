@@ -34,4 +34,18 @@ public class GlobalExceptionHandler {
 		
 		return ResponseEntity.badRequest().body(error);
 	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ErrorResponse> handleRuntimeException(
+			RuntimeException exception,
+			HttpServletRequest request) {
+		
+		ErrorResponse error = new ErrorResponse(
+				LocalDateTime.now(),
+				HttpStatus.BAD_REQUEST.value(),
+				exception.getMessage(),
+				request.getRequestURI());
+		
+		return ResponseEntity.badRequest().body(error);
+	}
 }

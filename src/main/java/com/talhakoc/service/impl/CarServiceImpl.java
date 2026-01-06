@@ -58,7 +58,7 @@ public class CarServiceImpl implements ICarService {
 				carFuelRepository.findById(carCreateDto.getCarFuelId())
 				.orElseThrow(() -> new RuntimeException("Araba yakıt tipi bulunamadı")));
 		
-		car.setStatus(carCreateDto.getStatus());
+		car.setCarStatus(carCreateDto.getStatus());
 		
 		carRepository.save(car);
 		

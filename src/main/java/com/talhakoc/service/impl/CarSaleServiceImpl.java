@@ -2,6 +2,7 @@ package com.talhakoc.service.impl;
 
 import java.util.List;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.talhakoc.dto.car_sale.request.CarSaleCreateDto;
@@ -14,6 +15,7 @@ import com.talhakoc.model.Employee;
 import com.talhakoc.repository.CarRepository;
 import com.talhakoc.repository.CarSaleRepository;
 import com.talhakoc.repository.EmployeeRepository;
+import com.talhakoc.security.CustomUserDetails;
 import com.talhakoc.service.ICarSaleService;
 
 import lombok.RequiredArgsConstructor;
@@ -47,17 +49,23 @@ public class CarSaleServiceImpl  implements ICarSaleService{
 			throw new RuntimeException("Bu araç zaten satılmış");
 		}
 		
-		Employee employe = employeeRepository.findById(carSaleCreateDto.getEmployeeId())
-				.orElseThrow(() -> new RuntimeException("Çalışan bulunamadı"));
+		// Güvenlik: Authenticated user'dan employee'yi al
+		CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		
+		Employee employee = employeeRepository.findByUser(userDetails.getUser())
+				.orElseThrow(() -> new RuntimeException("Çalışan bulunamadı. Bu işlem için çalışan olmanız gerekiyor."));
 
         CarSale carSale = new CarSale();
 
 		carSale.setCar(car);
-		carSale.setEmployee(employe);
+		carSale.setEmployee(employee);
+		carSale.setSaleDate(carSaleCreateDto.getSaleDate());
+		carSale.setSalePrice(carSaleCreateDto.getSalePrice());
 		
 		carSaleRepository.save(carSale);
 		
-		car.setStatus(CarStatus.SOLD);
+		car.setCarStatus(CarStatus.SOLD);
 		carRepository.save(car);
 		
 		return carSaleMapper.toDto(carSale);
