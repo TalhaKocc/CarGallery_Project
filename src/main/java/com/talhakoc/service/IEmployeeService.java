@@ -15,5 +15,5 @@ public interface IEmployeeService {
 	
 	public List<EmployeeDto>listAll();
 	
-	public void deleteEmployee(Long id);
+	public String deleteEmployee(Long id);
 }

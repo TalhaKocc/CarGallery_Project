@@ -110,7 +110,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	@Transactional
-    public void deleteEmployee(Long id) {
+    public String deleteEmployee(Long id) {
 		log.info("Deleting employee with ID: {}", id);
 
 		Employee employee = employeeRepository.findById(id)
@@ -118,6 +118,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
         employeeRepository.delete(employee);
 	    log.info("Employee deleted successfully with ID: {}", id);
+        return "User delete successfully" + id;
     }
 
 

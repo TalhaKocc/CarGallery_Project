@@ -1,16 +1,13 @@
 package com.talhakoc.controller;
 
+import com.talhakoc.dto.employee.request.EmployeeCreateDto;
+import com.talhakoc.dto.employee.request.EmployeeUpdateDto;
 import com.talhakoc.dto.employee.response.EmployeeDto;
-import com.talhakoc.model.Employee;
-import com.talhakoc.repository.EmployeeRepository;
-import com.talhakoc.service.impl.EmployeeServiceImpl;
+import com.talhakoc.dto.user.response.UserDto;
+import com.talhakoc.service.IEmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,13 +16,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeServiceImpl employeeService;
+    private final IEmployeeService employeeService;
 
     @GetMapping("/list")
     public ResponseEntity<List<EmployeeDto>> listAll(){
         return ResponseEntity.ok(employeeService.listAll());
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<UserDto> save(@RequestBody EmployeeCreateDto employeeCreateDto){
+        return ResponseEntity.ok(employeeService.saveEmployee(employeeCreateDto));
+    }
 
+    @PutMapping("/update")
+    public ResponseEntity<UserDto> update(@RequestBody EmployeeUpdateDto employeeUpdateDto){
+        return ResponseEntity.ok(employeeService.updateEmployee(employeeUpdateDto));
+    }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        return ResponseEntity.ok(employeeService.deleteEmployee(id));
+    }
 }
