@@ -63,9 +63,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Override
     @Transactional
     public List<EmployeeDto> listAll() {
-        log.info("Fetching all employees");
-		List<Employee> employees = employeeRepository.findAll();
-		return employeeMapper.toDtoList(employees);
+       return employeeRepository.findAll()
+               .stream()
+               .map(employeeMapper::toDto)
+               .toList();
 	}
 
 	@Override
