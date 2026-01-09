@@ -5,6 +5,7 @@ import com.talhakoc.dto.employee.request.EmployeeUpdateDto;
 import com.talhakoc.dto.employee.response.EmployeeDto;
 import com.talhakoc.dto.user.response.UserDto;
 import com.talhakoc.service.IEmployeeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<UserDto> save(@RequestBody EmployeeCreateDto employeeCreateDto){
+    public ResponseEntity<UserDto> save(@Valid @RequestBody EmployeeCreateDto employeeCreateDto){
         return ResponseEntity.ok(employeeService.saveEmployee(employeeCreateDto));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UserDto> update(@RequestBody EmployeeUpdateDto employeeUpdateDto){
+    public ResponseEntity<UserDto> update(@Valid @RequestBody EmployeeUpdateDto employeeUpdateDto){
         return ResponseEntity.ok(employeeService.updateEmployee(employeeUpdateDto));
     }
 

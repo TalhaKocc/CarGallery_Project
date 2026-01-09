@@ -33,8 +33,10 @@ public class CarServiceImpl implements ICarService {
 	@Override
 	public List<CarDto> listAll() {
 		
-		List<Car> cars = carRepository.findAll();
-		return carMapper.toDtoList(cars);
+		return carRepository.findAll()
+                .stream()
+                .map(carMapper::toDto)
+                .toList();
 	}
 
 	@Override
@@ -95,11 +97,13 @@ public class CarServiceImpl implements ICarService {
 	}
 
 	@Override
-	public void deleteCar(Long id) {
+	public String deleteCar(Long id) {
 		
 		Car car = carRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Araç bulunamadı"));
 		carRepository.delete(car);
+
+        return "Car is delected successfully " + id;
 	}
 
 	

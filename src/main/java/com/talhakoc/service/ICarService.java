@@ -14,5 +14,5 @@ public interface ICarService {
 	
 	public CarDto updateCar(CarUpdateDto carUpdateDto);
 	
-	public void deleteCar(Long id);
+	public String deleteCar(Long id);
 }
