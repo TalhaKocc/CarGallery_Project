@@ -2,6 +2,7 @@ package com.talhakoc.mapper;
 
 import java.util.List;
 
+import com.talhakoc.dto.employee.response.EmployeeDetailsDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -19,6 +20,8 @@ public interface EmployeeMapper {
 	Employee toEntity(EmployeeCreateDto employeeCreateDto);
 
     EmployeeDto toDto(Employee employee);
+
+    EmployeeDetailsDto toDetailsDto(Employee employee);
 
 	@Mapping(target = "salary", ignore = true)
 	@Mapping(target = "user", ignore = true)

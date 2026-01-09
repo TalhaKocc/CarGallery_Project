@@ -11,12 +11,7 @@ import com.talhakoc.dto.car.request.CarUpdateDto;
 import com.talhakoc.dto.car.response.CarDto;
 import com.talhakoc.model.Car;
 
-@Mapper(componentModel = "spring",uses = {
-		CarMakeMapper.class,
-		CarModelMapper.class,
-		CarEngineMapper.class,
-		CarFuelMapper.class
-})
+@Mapper(componentModel = "spring")
 
 public interface CarMapper {
 

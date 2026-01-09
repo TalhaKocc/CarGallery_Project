@@ -32,10 +32,10 @@ public class CarSaleServiceImpl  implements ICarSaleService{
 	
 	@Override
 	public List<CarSaleDto> listAll() {
-		
-		List<CarSale> carSales = carSaleRepository.findAll();
-		
-		return carSaleMapper.toDtoList(carSales);
+
+        return carSaleRepository.findAll()
+                .stream()
+                .map(carSaleMapper::)
 	}
 
 	@Override
