@@ -35,7 +35,8 @@ public class CarSaleServiceImpl  implements ICarSaleService{
 
         return carSaleRepository.findAll()
                 .stream()
-                .map(carSaleMapper::)
+                .map(carSaleMapper::toDto)
+                .toList();
 	}
 
 	@Override
