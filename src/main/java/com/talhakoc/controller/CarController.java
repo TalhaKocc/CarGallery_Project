@@ -33,7 +33,7 @@ public class CarController {
         return ResponseEntity.ok(carService.updateCar(carUpdateDto));
     }
 
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable Long id){
         return ResponseEntity.ok(carService.deleteCar(id));
     }
