@@ -2,6 +2,7 @@ package com.talhakoc.controller;
 
 import com.talhakoc.dto.employee.request.EmployeeCreateDto;
 import com.talhakoc.dto.employee.request.EmployeeUpdateDto;
+import com.talhakoc.dto.employee.request.EmployeeUpdateSalaryDto;
 import com.talhakoc.dto.employee.response.EmployeeDto;
 import com.talhakoc.dto.user.response.UserDto;
 import com.talhakoc.service.IEmployeeService;
@@ -27,6 +28,11 @@ public class EmployeeController {
     @PostMapping("/save")
     public ResponseEntity<UserDto> save(@Valid @RequestBody EmployeeCreateDto employeeCreateDto){
         return ResponseEntity.ok(employeeService.saveEmployee(employeeCreateDto));
+    }
+
+    @PutMapping("/updateSalary")
+    public ResponseEntity<EmployeeDto> updateSalary(@Valid @RequestBody EmployeeUpdateSalaryDto employeeUpdateSalaryDto){
+        return ResponseEntity.ok(employeeService.updateSalary(employeeUpdateSalaryDto));
     }
 
     @PutMapping("/update")
