@@ -1,8 +1,11 @@
 package com.talhakoc.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import com.talhakoc.dto.employee.request.EmployeeUpdateSalaryDto;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -70,6 +73,27 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
+    @Transactional
+    public EmployeeDto updateSalary(EmployeeUpdateSalaryDto employeeUpdateSalaryDto) {
+
+        log.info("Updating employee with id: {}", employeeUpdateSalaryDto.getId());
+
+        Employee employee = employeeRepository.findById(employeeUpdateSalaryDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeUpdateSalaryDto.getId()));
+
+        if(employeeUpdateSalaryDto.getSalary().compareTo(BigDecimal.ZERO) <= 0){
+            throw new RuntimeException("Maaş pozitif olmalı");
+        }
+
+        employee.setSalary(employeeUpdateSalaryDto.getSalary());
+
+        employeeRepository.save(employee);
+
+        return employeeMapper.toDto(employee);
+    }
+
+
+    @Override
 	@Transactional
     public UserDto updateEmployee(EmployeeUpdateDto employeeUpdateDto) {
 
