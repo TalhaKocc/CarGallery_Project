@@ -61,6 +61,18 @@ Proje, **katmanlı mimari (Layered Architecture)** prensiplerine uygun olarak ge
 
 ---
 
+## 📈 Teknik Tercihler ve Gerekçeler
+
+- MapStruct, reflection tabanlı mapping yaklaşımlarına
+  alternatif olarak compile-time dönüşüm sağladığı için tercih edilmiştir.
+
+- JWT ile stateless authentication kullanılarak,
+  sunucu tarafında session yönetimi ihtiyacı ortadan kaldırılmıştır.
+
+- PostgreSQL tercih edilerek ACID uyumlu ve güçlü
+  ilişkisel veri yönetimi hedeflenmiştir.
+
+
 ## ⚠️ Not
 
 Bu proje **öğrenme ve gelişim amaçlı** geliştirilmiştir.  
