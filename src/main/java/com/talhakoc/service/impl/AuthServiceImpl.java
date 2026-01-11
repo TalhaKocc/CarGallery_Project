@@ -38,6 +38,10 @@ public class AuthServiceImpl implements IAuthService {
                 )
         );
 
+        // şimdi burada yanlış şifre olursa veya yanlış kullanıcı adı olursa bie bir mesaj dönsün
+
+
+
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 
         String token = jwtService.generateToken(customUserDetails.getUsername());
