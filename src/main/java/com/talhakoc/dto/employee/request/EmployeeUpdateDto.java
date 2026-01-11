@@ -14,14 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EmployeeUpdateDto {
 
-	private Long id;
-	
 	@NotBlank(message = "Bu alan boş bırakılamaz")
 	private String fullName;
-	
-	@Email(message = "Lütfen email formatında yazınız")
-	@NotBlank(message = "Bu alan boş bırakılamaz")
-	private String email;
 
 	private String password;
 	

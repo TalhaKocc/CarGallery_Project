@@ -6,6 +6,8 @@ import java.util.List;
 import com.talhakoc.dto.employee.request.EmployeeUpdateSalaryDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -97,34 +99,25 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Transactional
     public UserDto updateEmployee(EmployeeUpdateDto employeeUpdateDto) {
 
-        log.info("Updating employee with ID: {}", employeeUpdateDto.getId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		Employee employee = employeeRepository.findById(employeeUpdateDto.getId())
-				.orElseThrow(() -> new RuntimeException("employe not found"));
+        String currentUserEmail = authentication.getName();
 
-        if (!employee.getUser().getEmail().equals(employeeUpdateDto.getEmail())) {
-            if (userRepository.findByEmail(employeeUpdateDto.getEmail()).isPresent()) {
-                log.warn("Email already exists: {}", employeeUpdateDto.getEmail());
-                throw new RuntimeException("Bu email adresi zaten kullanılıyor: " +  employeeUpdateDto.getEmail());
-            }
-        }
+        User user = userRepository.findByEmail(currentUserEmail)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + currentUserEmail));
 
-        String  encodePassword = null;
+        Employee employee = employeeRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + user.getId()));
+
+        user.setFullName(employeeUpdateDto.getFullName());
 
         if(employeeUpdateDto.getPassword() != null && !employeeUpdateDto.getPassword().isBlank()) {
-            encodePassword = passwordEncoder.encode(employeeUpdateDto.getPassword());
-            log.debug("Password will be updated for employee ID: {}", employeeUpdateDto.getId());
+           user.setPassword(passwordEncoder.encode(employeeUpdateDto.getPassword()));
         }
 
-		userMapper.updateUserFromDto(employeeUpdateDto, employee.getUser());
-
-        if (encodePassword != null){
-            employee.getUser().setPassword(encodePassword);
-        }
-
-        userRepository.save(employee.getUser());
+        userRepository.save(user);
 		
-		employeeMapper.updateEmployeeFromDto(employeeUpdateDto, employee);
+		employee.setPhoneNumber(employeeUpdateDto.getPhoneNumber());
 		employeeRepository.save(employee);
 
         log.info("Employee updated successfully with ID: {}", employee.getId());
