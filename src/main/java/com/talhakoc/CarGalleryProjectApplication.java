@@ -1,4 +1,4 @@
-package com.talhakoc.starter;
+package com.talhakoc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,9 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@EntityScan(basePackages = {"com.talhakoc"})
-@ComponentScan(basePackages = {"com.talhakoc"})
-@EnableJpaRepositories(basePackages = "com.talhakoc.repository")
+
 @SpringBootApplication
 public class CarGalleryProjectApplication {
 
