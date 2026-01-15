@@ -1,16 +1,9 @@
 package com.talhakoc.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,13 +21,17 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+    @Column(nullable = false)
 	private BigDecimal salary;
 	
-	@Column(name = "phone_number")
+	@Column(name = "phone_number", nullable = false, unique = true)
 	private String phoneNumber;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")
 	private User user;
+
+    @OneToMany(mappedBy = "employee")
+    private List<CarSale> carSales;
 
 }

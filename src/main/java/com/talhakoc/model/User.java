@@ -33,4 +33,6 @@ public class User {
 	@Column(nullable = false)
 	private boolean enabled = true;
 
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
 }

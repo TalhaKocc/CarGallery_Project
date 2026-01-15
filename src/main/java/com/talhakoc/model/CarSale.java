@@ -28,10 +28,10 @@ public class CarSale {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "sale_date")
+	@Column(name = "sale_date",nullable = false)
 	private LocalDate saleDate;
 	
-	@Column(name = "sale_price")
+	@Column(name = "sale_price",nullable = false)
 	private BigDecimal salePrice;
 	
 	@ManyToOne
